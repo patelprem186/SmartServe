@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.EasyBook"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name=".ui.auth.LoginActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.auth.RegisterActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.auth.PhoneAuthActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.auth.ForgotPasswordActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.auth.PasswordResetActivity"
+            android:exported="true">
+            <!-- Custom URL scheme for password reset -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="smartserve"
+                      android:host="reset" />
+            </intent-filter>
+            <!-- Firebase HTTPS URLs -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https"
+                      android:host="smartserve-57c5e.firebaseapp.com"
+                      android:pathPrefix="/reset-password" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https"
+                      android:host="smartserve-57c5e.firebaseapp.com"
+                      android:pathPrefix="/__/auth/action" />
+            </intent-filter>
+        </activity>
+
+            <activity
+                android:name=".ui.auth.TwoFactorVerificationActivity"
+                android:exported="false" />
+            
+        <activity
+            android:name=".ui.customer.CustomerMainActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.customer.ChatBotActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.provider.ProviderMainActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.customer.ServiceDetailActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.customer.BookingActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.customer.ServiceSearchActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.customer.DashboardActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.provider.ServiceManagementActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.provider.BookingManagementActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.customer.RatingActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.provider.CreateServiceActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.provider.EditServiceActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.customer.BookingsActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.customer.RescheduleActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.customer.MyBookingsActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.customer.CartActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.customer.PaymentActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.customer.BookingConfirmationActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.customer.ProviderRatingsActivity"
+            android:exported="false" />
+            
+        <!-- Admin Activities -->
+        <activity
+            android:name=".ui.admin.AdminLoginActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.admin.AdminDashboardActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.admin.ServiceManagementActivity"
+            android:exported="false" />
+            
+        <!-- Provider Activities -->
+        <activity
+            android:name=".ui.provider.ProviderLoginActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ui.provider.ProviderDashboardActivity"
+            android:exported="false" />
+
+        <!-- Firebase Messaging Service -->
+        <service
+            android:name=".firebase.SmartServeFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- Firebase Messaging default notification icon -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_notifications" />
+        
+        <!-- Firebase Messaging default notification color -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimary" />
+
+        <!-- Firebase Messaging default notification channel -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="smartserve_notifications" />
+
+    </application>
+
+</manifest>

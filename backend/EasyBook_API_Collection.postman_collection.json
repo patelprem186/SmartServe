@@ -1,0 +1,1049 @@
+{
+	"info": {
+		"_postman_id": "easybook-api-collection",
+		"name": "Smart Serve Service Booking API",
+		"description": "Complete API collection for EasyBook Service Booking Mobile Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "easybook-team"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "API Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"health"
+							]
+						},
+						"description": "Check if the API server is running and healthy"
+					},
+					"response": []
+				}
+			],
+			"description": "Basic health check endpoints"
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Test\",\n  \"lastName\": \"User\",\n  \"email\": \"testuser@example.com\",\n  \"phone\": \"+1234567890\",\n  \"password\": \"password123\",\n  \"role\": \"customer\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						},
+						"description": "Register a new user (customer or provider)"
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"john.doe@email.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Login with existing user credentials"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/auth/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						},
+						"description": "Get current user profile information"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Updated\",\n  \"lastName\": \"Name\",\n  \"phone\": \"+1234567891\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"profile"
+							]
+						},
+						"description": "Update user profile information"
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"currentPassword\": \"password123\",\n  \"newPassword\": \"newpassword123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/change-password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"change-password"
+							]
+						},
+						"description": "Change user password"
+					},
+					"response": []
+				}
+			],
+			"description": "Authentication and user management endpoints"
+		},
+		{
+			"name": "Services",
+			"item": [
+				{
+					"name": "Get Service Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/services/categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"services",
+								"categories"
+							]
+						},
+						"description": "Get all available service categories"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Featured Services",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/services/featured",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"services",
+								"featured"
+							]
+						},
+						"description": "Get featured services"
+					},
+					"response": []
+				},
+				{
+					"name": "Search Services",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/services/search?query=cleaning&minPrice=50&maxPrice=200&sortBy=rating&page=1&limit=20",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"services",
+								"search"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "cleaning"
+								},
+								{
+									"key": "minPrice",
+									"value": "50"
+								},
+								{
+									"key": "maxPrice",
+									"value": "200"
+								},
+								{
+									"key": "sortBy",
+									"value": "rating"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Search services with filters"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Service Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/services/{{service_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"services",
+								"{{service_id}}"
+							]
+						},
+						"description": "Get detailed information about a specific service"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Services by Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/services/category/{{category_id}}?page=1&limit=20&sortBy=rating",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"services",
+								"category",
+								"{{category_id}}"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "sortBy",
+									"value": "rating"
+								}
+							]
+						},
+						"description": "Get services filtered by category"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Service (Provider Only)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{provider_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"New Cleaning Service\",\n  \"description\": \"Professional cleaning service for homes and offices\",\n  \"category\": \"{{category_id}}\",\n  \"price\": 120,\n  \"duration\": 120,\n  \"location\": {\n    \"type\": \"at_customer\",\n    \"serviceArea\": {\n      \"radius\": 15,\n      \"cities\": [\"New York\", \"Brooklyn\"]\n    }\n  },\n  \"tags\": [\"cleaning\", \"professional\", \"home\"]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/services",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"services"
+							]
+						},
+						"description": "Create a new service (Provider only)"
+					},
+					"response": []
+				}
+			],
+			"description": "Service management endpoints"
+		},
+		{
+			"name": "Bookings",
+			"item": [
+				{
+					"name": "Create Booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"serviceId\": \"{{service_id}}\",\n  \"bookingDate\": \"2024-01-25\",\n  \"startTime\": \"10:00\",\n  \"location\": {\n    \"type\": \"at_customer\",\n    \"address\": {\n      \"street\": \"123 Test Street\",\n      \"city\": \"New York\",\n      \"state\": \"NY\",\n      \"zipCode\": \"10001\",\n      \"coordinates\": {\n        \"latitude\": 40.7128,\n        \"longitude\": -74.0060\n      }\n    }\n  },\n  \"notes\": {\n    \"customer\": \"Please call before arriving\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/bookings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings"
+							]
+						},
+						"description": "Create a new booking"
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Bookings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/bookings/my-bookings?status=&page=1&limit=20",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"my-bookings"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": ""
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Get user's bookings (customer or provider)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Booking Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/bookings/{{booking_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"{{booking_id}}"
+							]
+						},
+						"description": "Get detailed information about a specific booking"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Booking Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"confirmed\",\n  \"notes\": \"Booking confirmed for the requested time\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/bookings/{{booking_id}}/status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"{{booking_id}}",
+								"status"
+							]
+						},
+						"description": "Update booking status (pending, confirmed, in_progress, completed, cancelled)"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Rating and Review",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rating\": 5,\n  \"review\": \"Excellent service! Very professional and thorough.\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/bookings/{{booking_id}}/rating",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"{{booking_id}}",
+								"rating"
+							]
+						},
+						"description": "Add rating and review for a completed booking"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Service Availability",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/bookings/availability/{{service_id}}?date=2024-01-25",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"availability",
+								"{{service_id}}"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2024-01-25"
+								}
+							]
+						},
+						"description": "Get available time slots for a service on a specific date"
+					},
+					"response": []
+				}
+			],
+			"description": "Booking management endpoints"
+		},
+		{
+			"name": "Customer Endpoints",
+			"item": [
+				{
+					"name": "Get Customer Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{customer_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/customers/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"profile"
+							]
+						},
+						"description": "Get customer profile information"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{customer_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"customerInfo\": {\n    \"address\": {\n      \"street\": \"456 New Street\",\n      \"city\": \"New York\",\n      \"state\": \"NY\",\n      \"zipCode\": \"10002\"\n    },\n    \"preferences\": {\n      \"notifications\": true,\n      \"emailUpdates\": true\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/customers/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"profile"
+							]
+						},
+						"description": "Update customer profile and preferences"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{customer_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/customers/dashboard",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"dashboard"
+							]
+						},
+						"description": "Get customer dashboard with statistics and recent bookings"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer Booking History",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{customer_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/customers/booking-history?status=&page=1&limit=20",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"booking-history"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": ""
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Get customer's booking history"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer Favorites",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{customer_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/customers/favorites",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"favorites"
+							]
+						},
+						"description": "Get customer's favorite services and providers"
+					},
+					"response": []
+				},
+				{
+					"name": "Update FCM Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{customer_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fcmToken\": \"sample_fcm_token_for_notifications\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/customers/fcm-token",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"fcm-token"
+							]
+						},
+						"description": "Update customer's FCM token for push notifications"
+					},
+					"response": []
+				}
+			],
+			"description": "Customer-specific endpoints"
+		},
+		{
+			"name": "Provider Endpoints",
+			"item": [
+				{
+					"name": "Get Provider Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{provider_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/providers/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"providers",
+								"profile"
+							]
+						},
+						"description": "Get provider profile information"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Provider Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{provider_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"providerInfo\": {\n    \"businessName\": \"Updated Business Name\",\n    \"experience\": 6,\n    \"businessAddress\": {\n      \"street\": \"789 Business Street\",\n      \"city\": \"New York\",\n      \"state\": \"NY\",\n      \"zipCode\": \"10003\"\n    },\n    \"isAvailable\": true\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/providers/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"providers",
+								"profile"
+							]
+						},
+						"description": "Update provider profile and business information"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Working Hours",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{provider_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"workingHours\": {\n    \"monday\": { \"start\": \"08:00\", \"end\": \"18:00\", \"isWorking\": true },\n    \"tuesday\": { \"start\": \"08:00\", \"end\": \"18:00\", \"isWorking\": true },\n    \"wednesday\": { \"start\": \"08:00\", \"end\": \"18:00\", \"isWorking\": true },\n    \"thursday\": { \"start\": \"08:00\", \"end\": \"18:00\", \"isWorking\": true },\n    \"friday\": { \"start\": \"08:00\", \"end\": \"18:00\", \"isWorking\": true },\n    \"saturday\": { \"start\": \"09:00\", \"end\": \"16:00\", \"isWorking\": true },\n    \"sunday\": { \"start\": \"10:00\", \"end\": \"15:00\", \"isWorking\": false }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/providers/working-hours",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"providers",
+								"working-hours"
+							]
+						},
+						"description": "Update provider's working hours"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Provider Services",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{provider_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/providers/my-services?status=all&page=1&limit=20",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"providers",
+								"my-services"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "all"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Get provider's services"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Provider Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{provider_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/providers/dashboard",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"providers",
+								"dashboard"
+							]
+						},
+						"description": "Get provider dashboard with earnings and statistics"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Provider Earnings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{provider_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/providers/earnings?startDate=2024-01-01&endDate=2024-12-31&page=1&limit=20",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"providers",
+								"earnings"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-12-31"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Get provider earnings report"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Provider Reviews",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{provider_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/providers/reviews?page=1&limit=20",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"providers",
+								"reviews"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Get provider reviews and ratings"
+					},
+					"response": []
+				}
+			],
+			"description": "Provider-specific endpoints"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:4000",
+			"type": "string"
+		},
+		{
+			"key": "auth_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "customer_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "provider_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "service_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "category_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "booking_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
