@@ -175,17 +175,17 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- City Dropdown -->
+        <!-- State Dropdown -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:hint="City"
+            android:hint="State"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            app:startIconDrawable="@drawable/ic_home">
+            app:startIconDrawable="@drawable/ic_category">
 
             <AutoCompleteTextView
-                android:id="@+id/actv_city"
+                android:id="@+id/actv_state"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -194,25 +194,25 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- State and Zip Code -->
+        <!-- City and Zip Code -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginBottom="16dp">
 
-            <!-- State Dropdown -->
+            <!-- City Dropdown -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
-                android:hint="State"
+                android:hint="City"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                app:startIconDrawable="@drawable/ic_category">
+                app:startIconDrawable="@drawable/ic_home">
 
                 <AutoCompleteTextView
-                    android:id="@+id/actv_state"
+                    android:id="@+id/actv_city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none"
